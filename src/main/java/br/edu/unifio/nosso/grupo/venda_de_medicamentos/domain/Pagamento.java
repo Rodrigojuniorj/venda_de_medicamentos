@@ -2,15 +2,13 @@ package br.edu.unifio.nosso.grupo.venda_de_medicamentos.domain;
 
 import lombok.Data;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
+@Entity
 @Data
 public class Pagamento {
 
