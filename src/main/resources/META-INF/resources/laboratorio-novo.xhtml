@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xml:lang="en" lang="en">
+
+<style type="text/css">
+    .centraliza{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .descricao{
+        text-align: center;
+        width: 50%;
+        border: 1px solid #ccc;
+        padding: 10px;
+        font-size: 1.2rem;
+    }
+
+    .box-wraper{
+        margin-left: 50px;
+        margin-top: 20px;
+        }
+
+</style>
+
+<h:head>
+    <title>Title</title>
+</h:head>
+<h:body>
+    <h:form style=" ">
+        <ui:include src="template.xhtml"/>
+
+        <p:card style="">
+
+            <p:messages closable="true">
+                <p:autoUpdate/>
+            </p:messages>
+
+
+            <div class="box-wraper">
+                <f:facet name="title">
+                    <div class="centraliza">
+                        <div class="descricao" style="font-weight: normal"> Este módulo serve para você cadastrar novos laboratórios</div>
+                    </div>
+                    <h2 style="margin-top: 90px; margin-left: 50px">Novo laboratório</h2>
+                </f:facet>
+
+                <h:panelGrid columns="1" >
+                    <p:inputText value="" placeholder="Nome" style="width: 300px">
+                        <p:autoUpdate/>
+                    </p:inputText>
+                </h:panelGrid>
+
+                <h:panelGrid columns="12" style="margin-top: 30px ">
+                    <p:commandButton value="Salvar" styleClass="ui-button-success"  icon="pi pi-save"/>
+                    <p:button value="Voltar" icon="pi pi-times"/>
+                </h:panelGrid>
+            </div>
+        </p:card>
+    </h:form>
+</h:body>
+</html>

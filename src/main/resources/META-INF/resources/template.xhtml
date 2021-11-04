@@ -16,6 +16,20 @@
 
     html, body {
         height: 100vh;
+        background: rgba(67,67,67,0.12) ;
+    }
+
+
+    body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link{
+        padding: 1.75rem 1rem !important;
+    }
+    body .ui-card{
+        position: relative;
+        margin-left:250px;
+        width: 80%;
+        margin-right: 10%;
+        margin-bottom: 2em;
+        height: 80vh;
     }
 
 
@@ -27,10 +41,11 @@
 
 <h:body>
     <div class="card" >
-        <h:form>
+            <br />
+        <h:form >
             <p:growl id="messages" showDetail="true"/>
 
-            <p:tieredMenu style="width:200px; height: 100vh;">
+            <p:tieredMenu style="position:absolute;top:0; width:200px; height: 100vh;margin-right: 20%">
                 <p:menuitem value="Quit" icon="pi pi-fw pi-power-off" />
                 <p:divider style=""/>
                 <p:submenu label="File" icon="pi pi-fw pi-file">
@@ -70,10 +85,14 @@
                         <p:menuitem value="Remove" icon="pi pi-fw pi-calendar-minus"/>
                     </p:submenu>
                 </p:submenu>
-
-
             </p:tieredMenu>
         </h:form>
+
+
     </div>
+
+
 </h:body>
+
 </html>
+
