@@ -23,10 +23,10 @@ public class Lote {
     private String numero ;
 
     @NotNull(message = "O campo data de fabricação é necessário")
-    @PastOrPresent(message = "A data de fabricação informada no campo validade deve ser uma data presente ou passada")
+    @PastOrPresent(message = "A data de fabricação informada deve ser uma data presente ou passada")
     private LocalDate dataDeFabricacao ;
 
     @NotNull(message = "O campo data de validade é necessário")
-    @FutureOrPresent(message = "A data de validade informada no campo validade deve ser uma data presente ou futura")
+    @FutureOrPresent(message = "A data de validade informada deve ser uma data presente ou futura")
     private LocalDate dataDeValidade;
 }
