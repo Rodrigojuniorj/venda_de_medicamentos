@@ -31,8 +31,12 @@
 
 </style>
 
+<f:metadata>
+    <f:viewAction action="#{loteBean.novoLote}" />
+</f:metadata>
+
 <h:head>
-    <title>Title</title>
+    <title>Lote</title>
 </h:head>
 <h:body>
     <h:form style=" ">
@@ -48,23 +52,42 @@
             <div class="box-wraper">
                 <f:facet name="title">
                     <div class="centraliza">
-                        <div class="descricao" style="font-weight: normal"> Este módulo serve para você cadastrar novos laboratórios</div>
+                        <div class="descricao" style="font-weight: normal"> Este módulo serve para você cadastrar novos lotes</div>
                     </div>
-                    <h2 style="margin-top: 90px; margin-left: 50px">Novo laboratório</h2>
+                    <h2 style="margin-top: 90px; margin-left: 50px">Novo Lote</h2>
                 </f:facet>
 
                 <h:panelGrid columns="1" >
-                    <p:inputText value="" placeholder="Nome" style="width: 300px">
+                    <p:inputText value="" placeholder="Número do Lote" style="width: 300px">
                         <p:autoUpdate/>
                     </p:inputText>
+
+                    <p:datePicker value="#{loteBean.lote.dataDeFabricacao}" placeholder="Data de fabricação" style="margin-top: 20px">
+                        <p:autoUpdate/>
+                    </p:datePicker>
+
+                    <p:datePicker value="#{loteBean.lote.dataDeValidade}" placeholder="Data de validade" style="margin-top: 20px">
+                        <p:autoUpdate/>
+                    </p:datePicker>
+
                 </h:panelGrid>
 
+
+
+
+
+
+
+
                 <h:panelGrid columns="12" style="margin-top: 30px ">
-                    <p:commandButton value="Salvar" styleClass="ui-button-success"  icon="pi pi-save"/>
+                    <p:commandButton value="Salvar" styleClass="ui-button-success"  icon="pi pi-save" actionListener="#{loteBean.salvarLote}"/>
                     <p:button value="Voltar" icon="pi pi-times"/>
                 </h:panelGrid>
             </div>
         </p:card>
     </h:form>
+
+
+
 </h:body>
 </html>

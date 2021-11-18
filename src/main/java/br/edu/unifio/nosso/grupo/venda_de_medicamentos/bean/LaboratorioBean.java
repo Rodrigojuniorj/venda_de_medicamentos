@@ -27,6 +27,7 @@ public class LaboratorioBean {
     public void novoLaboratorio(){
         laboratorio = new Laboratorio();
     }
+
     public void salvarLaboratorio(){
         try{
             laboratorioRepository.save(laboratorio);
@@ -35,6 +36,7 @@ public class LaboratorioBean {
             Messages.addGlobalWarn("Erro: Já existe um laboratório cadastrado com esse nome.");
         }
     }
+
     public void listarLaboratorios(){
         laboratorios = laboratorioRepository.findAll(Sort.by(Sort.Direction.ASC, "nome"));
     }
