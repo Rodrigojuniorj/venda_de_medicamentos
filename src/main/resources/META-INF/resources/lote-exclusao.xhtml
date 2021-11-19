@@ -26,7 +26,7 @@
 
 
 <f:metadata>
-    <f:viewAction action="#{loteBean.loteNovo}"/>
+    <f:viewAction action="#{loteBean.carregar}"/>
 </f:metadata>
 
 <h:head>
@@ -40,31 +40,31 @@
             <p:menuitem value="Home"/>
             <p:menuitem value="Cadastro"/>
             <p:menuitem value="Lote" outcome="lote-listar"/>
-            <p:menuitem value="Novo"/>
+            <p:menuitem value="Exclusão"/>
         </p:breadCrumb>
         <p:card style="">
             <f:facet name="title">
-                <h2 >Novo Lote</h2>
+                <h2 >Excuir Lote</h2>
             </f:facet>
             <p:messages closable="true">
                 <p:autoUpdate/>
             </p:messages>
                 <h:panelGrid columns="1" style="width: 100%">
-                    <p:inputText value="#{loteBean.lote.numero}" placeholder="Número" >
+                    <p:inputText value="#{loteBean.lote.numero}" placeholder="Número" disabled="true">
                         <p:autoUpdate/>
                     </p:inputText>
-                    <p:datePicker value="#{loteBean.lote.dataDeFabricacao}" placeholder="Data de fabricação">
+                    <p:datePicker value="#{loteBean.lote.dataDeFabricacao}" placeholder="Data de fabricação" disabled="true">
                         <p:autoUpdate/>
                     </p:datePicker>
 
-                    <p:datePicker value="#{loteBean.lote.dataDeValidade}" placeholder="Data de Validade">
+                    <p:datePicker value="#{loteBean.lote.dataDeValidade}" placeholder="Data de Validade" disabled="true">
                         <p:autoUpdate/>
                     </p:datePicker>
                 </h:panelGrid>
 
 
             <h:panelGrid columns="12" style="margin-top: 30px ">
-                <p:commandButton value="Salvar" styleClass="ui-button-success"  actionListener="#{loteBean.salvarLote}" icon="pi pi-save"/>
+                <p:commandButton value="Exluir" styleClass="ui-button-success"  actionListener="#{loteBean.excluir}" icon="pi pi-save"/>
                 <p:button value="Voltar"  icon="pi pi-times"/>
             </h:panelGrid>
         </p:card>

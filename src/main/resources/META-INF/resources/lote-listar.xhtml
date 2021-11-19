@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xml:lang="en"
+      lang="en">
+
+<f:metadata>
+    <f:viewAction action="#{loteBean.listar}"/>
+</f:metadata>
+
+<h:head>
+    <title>Listagem de Lotes</title>
+    <h:outputScript name="locales/locale-pt.js" library="primefaces"/>
+</h:head>
+
+<h:body >
+    <h:form style=" ">
+        <ui:include src="menu.xhtml"/>
+        <p:breadCrumb style="">
+            <p:menuitem value="Home"/>
+            <p:menuitem value="Cadastro"/>
+            <p:menuitem value="Lote"/>
+            <p:menuitem value="Listagem"/>
+        </p:breadCrumb>
+        <p:card style="">
+            <p:messages closable="true">
+                <p:autoUpdate/>
+            </p:messages>
+
+            <p:dataTable value="#{loteBean.lotes}" var="lote" >
+                <f:facet name="header">
+                    <p:button  icon="pi pi-plus" outcome="lote-novo.xhtml" />
+                </f:facet>
+                <p:column headerText="Número">
+                    <h:outputText value="#{lote.numero}" />
+                </p:column>
+                <p:column headerText="Data de Fabricação">
+                    <h:outputText value="#{lote.dataDeFabricacao}" >
+                        <f:convertDateTime type="localDate" pattern="dd/MM/yyyy" />
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Data de Validade">
+                    <h:outputText value="#{lote.dataDeValidade}" >
+                        <f:convertDateTime type="localDate" pattern="dd/MM/yyyy" />
+                     </h:outputText>
+                </p:column>
+                <p:column headerText="">
+                    <p:commandButton icon="pi pi-pencil" actionListener="#{loteBean.selecionarEdicao(lote)}" style="border: none"/>
+                    <p:spacer width="1"/>
+                    <p:commandButton icon="pi pi-trash" actionListener="#{loteBean.selecionarExclusao(lote)}" style="color: #fff; background-color: red; border: none" />
+                </p:column>
+            </p:dataTable>
+        </p:card>
+    </h:form>
+</h:body>
+
+</html>

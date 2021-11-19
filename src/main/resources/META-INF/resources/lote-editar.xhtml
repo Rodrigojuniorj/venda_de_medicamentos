@@ -26,11 +26,11 @@
 
 
 <f:metadata>
-    <f:viewAction action="#{loteBean.loteNovo}"/>
+    <f:viewAction action="#{loteBean.carregar}"/>
 </f:metadata>
 
 <h:head>
-    <title>Lote</title>
+    <title>Lote edição</title>
     <h:outputScript name="locales/locale-pt.js" library="primefaces"/>
 </h:head>
 <h:body>
@@ -40,11 +40,11 @@
             <p:menuitem value="Home"/>
             <p:menuitem value="Cadastro"/>
             <p:menuitem value="Lote" outcome="lote-listar"/>
-            <p:menuitem value="Novo"/>
+            <p:menuitem value="Editar"/>
         </p:breadCrumb>
         <p:card style="">
             <f:facet name="title">
-                <h2 >Novo Lote</h2>
+                <h2 >Editar Lote</h2>
             </f:facet>
             <p:messages closable="true">
                 <p:autoUpdate/>
