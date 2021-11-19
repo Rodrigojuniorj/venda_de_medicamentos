@@ -1,5 +1,6 @@
 package br.edu.unifio.nosso.grupo.venda_de_medicamentos.bean;
 
+import br.edu.unifio.nosso.grupo.venda_de_medicamentos.domain.Laboratorio;
 import br.edu.unifio.nosso.grupo.venda_de_medicamentos.domain.PrincipioAtivo;
 import br.edu.unifio.nosso.grupo.venda_de_medicamentos.domain.Usuario;
 import br.edu.unifio.nosso.grupo.venda_de_medicamentos.repository.UsuarioRepository;
@@ -32,9 +33,24 @@ public class UsuarioBean {
         try{
             usuarioRepository.save(usuario);
             Messages.addGlobalInfo("Usuário salvo com sucesso!");
+
+            Faces.navigate("usuario-listar.xhtml?faces-redirect=true");
         }catch (DataIntegrityViolationException e){
             Messages.addGlobalWarn("Erro: Já existe um usuário cadastrado com esse nome.");
         }
+    }
+
+    public void car(){
+        usuario = Faces.getFlashAttribute("usuario");
+
+        if(usuario == null){
+            Faces.navigate("usuario-listar.xhtml?faces-redirect=true");
+        }
+    }
+
+    public void selecionarExclusao(Usuario usuario){
+        Faces.setFlashAttribute("usuario", usuario);
+        Faces.navigate("usuario-exclusao.xhtml?faces-redirect=true");
     }
 
     public void listarUsuario(){
@@ -44,7 +60,7 @@ public class UsuarioBean {
     public void selecionarEdicao(Usuario usuario) {
         try {
             Faces.setFlashAttribute("usuario", usuario);
-            Faces.redirect("usuario-edicao.xhtml");
+            Faces.redirect("usuario-editar.xhtml");
         } catch (Exception e) {
 
         }
@@ -54,7 +70,7 @@ public class UsuarioBean {
             usuario = Faces.getFlashAttribute("usuario");
         } else {
             try{
-                Faces.redirect("usuario-lista.xhtml");
+                Faces.redirect("usuario-listar.xhtml");
                 Messages.addGlobalInfo("Nenhum usuário selecionado!");
             }catch (Exception e){
 
@@ -65,6 +81,7 @@ public class UsuarioBean {
         try{
             usuarioRepository.deleteById(usuario.getCodigo());
             Messages.addFlashGlobalInfo("Usuário removido com sucesso.");
+            Faces.navigate("usuario-listar.xhtml?faces-redirect=true");
         }catch(DataIntegrityViolationException e){
             Messages.addGlobalWarn("Erro: o registro selecionado está vinculado com outros registros.");
         }
