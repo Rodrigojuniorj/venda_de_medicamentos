@@ -26,7 +26,7 @@
 
 
 <f:metadata>
-    <f:viewAction action="#{laboratorioBean.novoLaboratorio}"/>
+    <f:viewAction action="#{laboratorioBean.carreg}"/>
 </f:metadata>
 
 <h:head>
@@ -38,19 +38,19 @@
         <ui:include src="menu.xhtml"/>
         <p:breadCrumb style="">
             <p:menuitem value="Home"/>
-            <p:menuitem value="Cadastro "/>
-            <p:menuitem value="Editar Cadastro"  outcome="laboratorio-listar"/>
-
+            <p:menuitem value="Cadastro"/>
+            <p:menuitem value="Laboratorio" outcome="laboratorio-listar"/>
+            <p:menuitem value="Exclusão"/>
         </p:breadCrumb>
         <p:card style="">
             <f:facet name="title">
-                <h2 >Novo Laboratório</h2>
+                <h2 >Excuir Laboratorio</h2>
             </f:facet>
             <p:messages closable="true">
                 <p:autoUpdate/>
             </p:messages>
                 <h:panelGrid columns="1" style="width: 100%">
-                    <p:inputText value="#{laboratorioBean.laboratorio.nome}" placeholder="Nome" >
+                    <p:inputText value="#{laboratorioBean.laboratorio.nome}" placeholder="Nome" disabled="true">
                         <p:autoUpdate/>
                     </p:inputText>
 
@@ -60,7 +60,7 @@
 
 
             <h:panelGrid columns="12" style="margin-top: 30px ">
-                <p:commandButton value="Salvar" styleClass="ui-button-success"  actionListener="#{laboratorioBean.salvarLaboratorio}" icon="pi pi-save"/>
+                <p:commandButton value="Exluir" styleClass="ui-button-success"  actionListener="#{laboratorioBean.excluirLaboratorio}" icon="pi pi-save"/>
                 <p:button value="Voltar"  icon="pi pi-times"/>
             </h:panelGrid>
         </p:card>

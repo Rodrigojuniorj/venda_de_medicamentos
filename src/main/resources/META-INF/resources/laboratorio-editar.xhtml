@@ -26,11 +26,11 @@
 
 
 <f:metadata>
-    <f:viewAction action="#{laboratorioBean.novoLaboratorio}"/>
+    <f:viewAction action="#{laboratorioBean.carreg}"/>
 </f:metadata>
 
 <h:head>
-    <title>Laboratorio</title>
+    <title>Laboratorio edição</title>
     <h:outputScript name="locales/locale-pt.js" library="primefaces"/>
 </h:head>
 <h:body>
@@ -38,13 +38,13 @@
         <ui:include src="menu.xhtml"/>
         <p:breadCrumb style="">
             <p:menuitem value="Home"/>
-            <p:menuitem value="Cadastro "/>
-            <p:menuitem value="Editar Cadastro"  outcome="laboratorio-listar"/>
-
+            <p:menuitem value="Cadastro"/>
+            <p:menuitem value="Laboratorio" outcome="laboratorio-listar"/>
+            <p:menuitem value="Editar"/>
         </p:breadCrumb>
         <p:card style="">
             <f:facet name="title">
-                <h2 >Novo Laboratório</h2>
+                <h2 >Editar Laboratorio</h2>
             </f:facet>
             <p:messages closable="true">
                 <p:autoUpdate/>
@@ -53,8 +53,6 @@
                     <p:inputText value="#{laboratorioBean.laboratorio.nome}" placeholder="Nome" >
                         <p:autoUpdate/>
                     </p:inputText>
-
-
 
                 </h:panelGrid>
 
