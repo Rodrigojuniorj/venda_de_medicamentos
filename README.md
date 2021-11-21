@@ -8,4 +8,4 @@ Projeto feito para realização de uma prova de padrões de desenvolvimento web
 - [@ArthurPossetti] (https://github.com/ArthurPossetti)
 
 
- -[![Maven Package](https://github.com/Rodrigojuniorj/venda_de_medicamentos/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/Rodrigojuniorj/venda_de_medicamentos/actions/workflows/maven-publish.yml)
+ [![Maven Package](https://github.com/Rodrigojuniorj/venda_de_medicamentos/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/Rodrigojuniorj/venda_de_medicamentos/actions/workflows/maven-publish.yml)
