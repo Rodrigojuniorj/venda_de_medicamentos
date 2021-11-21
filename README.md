@@ -7,5 +7,3 @@ Projeto feito para realização de uma prova de padrões de desenvolvimento web
 - [@wesleyfantineli] (https://github.com/wesleyfantineli)
 - [@ArthurPossetti] (https://github.com/ArthurPossetti)
 
-
- [![Maven Package](https://github.com/Rodrigojuniorj/venda_de_medicamentos/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/Rodrigojuniorj/venda_de_medicamentos/actions/workflows/maven-publish.yml)
