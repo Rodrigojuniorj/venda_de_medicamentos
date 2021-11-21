@@ -1,5 +1,6 @@
 package br.edu.unifio.nosso.grupo.venda_de_medicamentos.bean;
 
+import br.edu.unifio.nosso.grupo.venda_de_medicamentos.domain.Laboratorio;
 import br.edu.unifio.nosso.grupo.venda_de_medicamentos.domain.PrincipioAtivo;
 import br.edu.unifio.nosso.grupo.venda_de_medicamentos.repository.PrincipioAtivoRepository;
 import lombok.Data;
@@ -42,7 +43,7 @@ public class PrincipioAtivoBean {
     public void selecionarEdicao(PrincipioAtivo principioAtivo) {
         try {
             Faces.setFlashAttribute("principioativo", principioAtivo);
-            Faces.redirect("principioativo-edicao.xhtml");
+            Faces.redirect("principioativo-editar.xhtml");
         } catch (Exception e) {
 
         }
@@ -67,4 +68,16 @@ public class PrincipioAtivoBean {
             Messages.addGlobalWarn("Erro: o registro selecionado está vinculado com outros registros.");
         }
     }
+    public void carreg(){
+        principioAtivo = Faces.getFlashAttribute("principioativo");
+
+        if(principioAtivo == null){
+            Faces.navigate("principioativo-lista.xhtml?faces-redirect=true");
+        }
+    }
+    public void selecionarExclusao(PrincipioAtivo principioAtivo){
+        Faces.setFlashAttribute("principioativo", principioAtivo);
+        Faces.navigate("principioativo-exclusao.xhtml?faces-redirect=true");
+    }
+
 }

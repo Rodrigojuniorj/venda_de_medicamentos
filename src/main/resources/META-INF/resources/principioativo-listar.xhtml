@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xml:lang="en"
+      lang="en">
+
+<f:metadata>
+    <f:viewAction action="#{principioAtivoBean.listarPrincipioAtivo}"/>
+</f:metadata>
+
+<h:head>
+    <title>Listagem de Principio Ativo</title>
+    <h:outputScript name="locales/locale-pt.js" library="primefaces"/>
+</h:head>
+
+<h:body >
+    <h:form style=" ">
+        <ui:include src="menu.xhtml"/>
+        <p:breadCrumb style="">
+            <p:menuitem value="Home"/>
+            <p:menuitem value="Cadastro"/>
+            <p:menuitem value="Principio Ativo"/>
+            <p:menuitem value="Listagem"/>
+        </p:breadCrumb>
+        <p:card style="">
+            <p:messages closable="true">
+                <p:autoUpdate/>
+            </p:messages>
+
+            <p:dataTable value="#{principioAtivoBean.principiosAtivos}" var="principiosativos" >
+                <f:facet name="header">
+                    <p:button  icon="pi pi-plus" outcome="principioativo-novo.xhtml" />
+                </f:facet>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{principiosativos.nome}" />
+                </p:column>
+
+
+                <p:column headerText="">
+                    <p:commandButton icon="pi pi-pencil" actionListener="#{principioAtivoBean.selecionarEdicao(principiosativos)}" style="border: none"/>
+                    <p:spacer width="1"/>
+                    <p:commandButton icon="pi pi-trash" actionListener="#{principioAtivoBean.selecionarExclusao(principiosativos)}" style="color: #fff; background-color: red; border: none" />
+                </p:column>
+            </p:dataTable>
+        </p:card>
+    </h:form>
+</h:body>
+
+</html>
