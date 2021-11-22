@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xml:lang="en"
+      lang="en">
+
+<style type="text/css">
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    p {
+        line-height: 1.5;
+        margin: 0;
+    }
+</style>
+
+
+<f:metadata>
+    <f:viewAction action="#{compraBean.retornarEdicao}"/>
+</f:metadata>
+
+<h:head>
+    <title>Compra</title>
+    <h:outputScript name="locales/locale-pt.js" library="primefaces"/>
+</h:head>
+<h:body>
+    <h:form style=" ">
+        <ui:include src="menu.xhtml"/>
+        <p:breadCrumb style="">
+            <p:menuitem value="Home"/>
+            <p:menuitem value="Cadastro"/>
+            <p:menuitem value="Compra" outcome="compra-listar"/>
+            <p:menuitem value="Editar"/>
+        </p:breadCrumb>
+        <p:card style="">
+            <f:facet name="title">
+                <h2 >Editar Compra</h2>
+            </f:facet>
+            <p:messages closable="true">
+                <p:autoUpdate/>
+            </p:messages>
+            <h:panelGrid columns="1" style="width: 100%">
+                <p:selectOneMenu value="#{compraBean.compra.usuario}"  converter="omnifaces.SelectItemsConverter">
+                    <f:selectItem itemLabel="Usuario" noSelectionOption="true"/>
+
+                    <f:selectItems value="#{compraBean.usuarios}" var="usuario" itemValue="#{usuario}" itemLabel="#{usuario.codigo}: #{usuario.nome}" />
+                    <p:autoUpdate/>
+                </p:selectOneMenu>
+                <p:inputNumber value="#{compraBean.compra.precoTotal}" placeholder="Valor total" >
+                    <p:autoUpdate/>
+                </p:inputNumber>
+                <p:datePicker value="#{compraBean.compra.horario}" placeholder="Data de compra" >
+                    <p:autoUpdate/>
+                </p:datePicker>
+                <p:selectOneMenu value="#{compraBean.compra.lote}"  converter="omnifaces.SelectItemsConverter">
+                    <f:selectItem itemLabel="Lote" noSelectionOption="true"/>
+
+                    <f:selectItems value="#{compraBean.lotes}" var="lote" itemValue="#{lote}" itemLabel="#{lote.codigo}" />
+                    <p:autoUpdate/>
+                </p:selectOneMenu>
+            </h:panelGrid>
+
+
+            <h:panelGrid columns="12" style="margin-top: 30px ">
+                <p:commandButton value="Salvar" styleClass="ui-button-success"  actionListener="#{compraBean.salvarCompra}" icon="pi pi-save"/>
+                <p:button value="Voltar"  icon="pi pi-times"/>
+            </h:panelGrid>
+        </p:card>
+    </h:form>
+
+
+
+</h:body>
+</html>

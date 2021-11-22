@@ -1,8 +1,12 @@
 package br.edu.unifio.nosso.grupo.venda_de_medicamentos.bean;
 
 import br.edu.unifio.nosso.grupo.venda_de_medicamentos.domain.Compra;
+import br.edu.unifio.nosso.grupo.venda_de_medicamentos.domain.Lote;
 import br.edu.unifio.nosso.grupo.venda_de_medicamentos.domain.Pagamento;
+import br.edu.unifio.nosso.grupo.venda_de_medicamentos.domain.Usuario;
 import br.edu.unifio.nosso.grupo.venda_de_medicamentos.repository.CompraRepository;
+import br.edu.unifio.nosso.grupo.venda_de_medicamentos.repository.LoteRepository;
+import br.edu.unifio.nosso.grupo.venda_de_medicamentos.repository.UsuarioRepository;
 import lombok.Data;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
@@ -20,12 +24,20 @@ import java.util.List;
 public class CompraBean {
     private Compra compra;
     private List<Compra> compras;
+    private List<Usuario> usuarios;
+    private List<Lote> lotes;
 
     @Autowired
     private CompraRepository compraRepository;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+    @Autowired
+    private LoteRepository loteRepository;
 
     public void novaCompra(){
         compra = new Compra();
+        usuarios = usuarioRepository.findAll(Sort.by(Sort.Direction.ASC, "nome"));
+        lotes = loteRepository.findAll(Sort.by(Sort.Direction.ASC, "codigo"));
     }
     public void salvarCompra(){
         try{
@@ -50,6 +62,8 @@ public class CompraBean {
     public void retornarEdicao() {
         if (Faces.getFlashAttribute("compra") != null) {
             compra = Faces.getFlashAttribute("compra");
+            usuarios = usuarioRepository.findAll(Sort.by(Sort.Direction.ASC, "nome"));
+            lotes = loteRepository.findAll(Sort.by(Sort.Direction.ASC, "codigo"));
         } else {
             try{
                 Faces.redirect("compra-lista.xhtml");
@@ -68,8 +82,18 @@ public class CompraBean {
         }
     }
     public void selecionarExclusao(Compra compra){
+        usuarios = usuarioRepository.findAll(Sort.by(Sort.Direction.ASC, "nome"));
+        lotes = loteRepository.findAll(Sort.by(Sort.Direction.ASC, "codigo"));
         Faces.setFlashAttribute("compra", compra);
         Faces.navigate("compra-exclusao.xhtml?faces-redirect=true");
     }
+    public void retornarExclusao(){
+        compra = Faces.getFlashAttribute("compra");
+        usuarios = usuarioRepository.findAll(Sort.by(Sort.Direction.ASC, "nome"));
+        lotes = loteRepository.findAll(Sort.by(Sort.Direction.ASC, "codigo"));
 
+        if(compra == null){
+            Faces.navigate("compra-listar.xhtml?faces-redirect=true");
+        }
+    }
 }
