@@ -43,6 +43,7 @@ public class CompraBean {
         try{
             compraRepository.save(compra);
             Messages.addGlobalInfo("Compra salva com sucesso!");
+            Faces.navigate("compra-listar.xhtml?faces-redirect=true");
         }catch (DataIntegrityViolationException e){
             Messages.addGlobalWarn("Erro: Já existe uma compra cadastrada com esse código.");
         }
@@ -77,6 +78,7 @@ public class CompraBean {
         try{
             compraRepository.deleteById(compra.getCodigo());
             Messages.addFlashGlobalInfo("Compra removida com sucesso.");
+            Faces.navigate("compra-listar.xhtml?faces-redirect=true");
         }catch(DataIntegrityViolationException e){
             Messages.addGlobalWarn("Erro: o registro selecionado está vinculado com outros registros.");
         }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xml:lang="en"
+      lang="en">
+
+<f:metadata>
+  <f:viewAction action="#{medicamentoBean.listarMedicamento}"/>
+</f:metadata>
+
+<h:head>
+  <title>Listagem de Medicamento</title>
+  <h:outputScript name="locales/locale-pt.js" library="primefaces"/>
+</h:head>
+
+<h:body >
+  <h:form style=" ">
+    <ui:include src="menu.xhtml"/>
+    <p:breadCrumb style="">
+      <p:menuitem value="Home"/>
+      <p:menuitem value="Cadastro"/>
+      <p:menuitem value="Medicamento"/>
+      <p:menuitem value="Listagem"/>
+    </p:breadCrumb>
+    <p:card style="">
+      <p:messages closable="true">
+        <p:autoUpdate/>
+      </p:messages>
+
+      <p:dataTable value="#{medicamentoBean.medicamentos}" var="medicamentos" >
+        <f:facet name="header">
+          <p:button  icon="pi pi-plus" outcome="principioativo-novo.xhtml" />
+        </f:facet>
+        <p:column headerText="Código">
+          <h:outputText value="#{medicamentos.codigo}" />
+        </p:column>
+        <p:column headerText="Nome">
+          <h:outputText value="#{medicamentos.nome}" />
+        </p:column>
+        <p:column headerText="Preço (Un)">
+          <h:outputText value="#{medicamentos.precoUnitario}" />
+        </p:column>
+        <p:column headerText="Laboratorio">
+          <h:outputText value="#{medicamentos.laboratorio.nome}" />
+        </p:column>
+        <p:column headerText="">
+          <p:commandButton icon="pi pi-pencil" actionListener="#{medicamentoBean.selecionarEdicao(medicamentos)}" style="border: none"/>
+          <p:spacer width="1"/>
+          <p:commandButton icon="pi pi-trash" actionListener="#{medicamentoBean.selecionarExclusao(medicamentos)}" style="color: #fff; background-color: red; border: none" />
+        </p:column>
+      </p:dataTable>
+    </p:card>
+  </h:form>
+</h:body>
+
+</html>

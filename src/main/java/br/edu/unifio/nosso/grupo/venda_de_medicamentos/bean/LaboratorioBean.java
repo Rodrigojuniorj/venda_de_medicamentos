@@ -33,6 +33,7 @@ public class LaboratorioBean {
         try{
             laboratorioRepository.save(laboratorio);
             Messages.addGlobalInfo("Laboratorio salvo com sucesso!");
+            Faces.navigate("laboratorio-listar.xhtml?faces-redirect=true");
         }catch (DataIntegrityViolationException e){
             Messages.addGlobalWarn("Erro: Já existe um laboratório cadastrado com esse nome.");
         }

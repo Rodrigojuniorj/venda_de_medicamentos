@@ -41,6 +41,7 @@ public class PagamentoBean {
         try{
             pagamentoRepository.save(pagamento);
             Messages.addGlobalInfo("Pagamento salvo com sucesso!");
+            Faces.navigate("pagamento-listar.xhtml?faces-redirect=true");
         }catch (DataIntegrityViolationException e){
             Messages.addGlobalWarn("Erro: Já existe um Pagamento cadastrado com esse código.");
         }
@@ -65,7 +66,7 @@ public class PagamentoBean {
             compras = compraRepository.findAll(Sort.by(Sort.Direction.ASC, "codigo"));
         } else {
             try{
-                Faces.redirect("pagamento-lista.xhtml");
+                Faces.redirect("pagamento-listar.xhtml");
                 Messages.addGlobalInfo("Nenhum pagamento selecionado!");
             }catch (Exception e){
 
@@ -76,6 +77,7 @@ public class PagamentoBean {
         try{
             pagamentoRepository.deleteById(pagamento.getCodigo());
             Messages.addFlashGlobalInfo("Pagamento removido com sucesso.");
+            Faces.navigate("pagamento-listar.xhtml?faces-redirect=true");
         }catch(DataIntegrityViolationException e){
             Messages.addGlobalWarn("Erro: o registro selecionado está vinculado com outros registros.");
         }

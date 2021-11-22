@@ -26,11 +26,11 @@
 
 
 <f:metadata>
-    <f:viewAction action="#{pagamentoBean.retornarEdicao}"/>
+    <f:viewAction action="#{medicamentoBean.selecionarEdicao}"/>
 </f:metadata>
 
 <h:head>
-    <title>Pagamento</title>
+    <title>Lote</title>
     <h:outputScript name="locales/locale-pt.js" library="primefaces"/>
 </h:head>
 <h:body>
@@ -39,34 +39,40 @@
         <p:breadCrumb style="">
             <p:menuitem value="Home"/>
             <p:menuitem value="Cadastro"/>
-            <p:menuitem value="Pagamento" outcome="pagamento-listar"/>
+            <p:menuitem value="Medicamento" outcome="medicamento-listar"/>
             <p:menuitem value="Editar"/>
         </p:breadCrumb>
         <p:card style="">
             <f:facet name="title">
-                <h2 >Editar Pagamento</h2>
+                <h2 >Editar Medicamento</h2>
             </f:facet>
             <p:messages closable="true">
                 <p:autoUpdate/>
             </p:messages>
             <h:panelGrid columns="1" style="width: 100%">
-                <p:inputText value="#{pagamentoBean.pagamento.numeroDoCartao}" placeholder="Número cartão de crédito" >
+                <p:inputText value="#{medicamentoBean.medicamento.nome}" placeholder="Nome" disabled="true">
                     <p:autoUpdate/>
                 </p:inputText>
-                <p:datePicker value="#{pagamentoBean.pagamento.horario}" placeholder="Data de pagamento" >
+                <p:inputNumber value="#{medicamentoBean.medicamento.precoUnitario}" placeholder="Preço unitário" disabled="true">
                     <p:autoUpdate/>
-                </p:datePicker>
-                <p:selectOneMenu value="#{pagamentoBean.pagamento.compra}"  converter="omnifaces.SelectItemsConverter">
-                    <f:selectItem itemLabel="Compra" noSelectionOption="true"/>
+                </p:inputNumber>
+                <p:selectOneMenu value="#{medicamentoBean.medicamento.laboratorio}"  converter="omnifaces.SelectItemsConverter" disabled="true">
+                    <f:selectItem itemLabel="Laboratorio" noSelectionOption="true"/>
 
-                    <f:selectItems value="#{pagamentoBean.compras}" var="compra" itemValue="#{compra}" itemLabel="#{compra.codigo}" />
+                    <f:selectItems value="#{medicamentoBean.laboratorios}" var="laboratorio" itemValue="#{laboratorio}" itemLabel="#{laboratorio.codigo}: #{laboratorio.nome}" />
+                    <p:autoUpdate/>
+                </p:selectOneMenu>
+                <p:selectOneMenu value="#{medicamentoBean.medicamento.principioAtivo}"  converter="omnifaces.SelectItemsConverter" disabled="true">
+                    <f:selectItem itemLabel="Principio Ativo" noSelectionOption="true"/>
+
+                    <f:selectItems value="#{medicamentoBean.principioAtivos}" var="principioativo" itemValue="#{principioativo}" itemLabel="#{principioativo.codigo}: #{principioativo.nome}" />
                     <p:autoUpdate/>
                 </p:selectOneMenu>
             </h:panelGrid>
 
 
             <h:panelGrid columns="12" style="margin-top: 30px ">
-                <p:commandButton value="Salvar" styleClass="ui-button-success"  actionListener="#{pagamentoBean.salvarPagamento}" icon="pi pi-save"/>
+                <p:commandButton value="Salvar" styleClass="ui-button-success"  actionListener="#{medicamentoBean.excluirMedicamento}" icon="pi pi-save"/>
                 <p:button value="Voltar"  icon="pi pi-times"/>
             </h:panelGrid>
         </p:card>

@@ -31,6 +31,7 @@ public class PrincipioAtivoBean {
         try{
             principioAtivoRepository.save(principioAtivo);
             Messages.addGlobalInfo("Principio Ativo salvo com sucesso!");
+            Faces.navigate("principioativo-listar.xhtml?faces-redirect=true");
         }catch (DataIntegrityViolationException e){
             Messages.addGlobalWarn("Erro: Já existe um Principio Ativo cadastrado com esse nome.");
         }
@@ -64,6 +65,7 @@ public class PrincipioAtivoBean {
         try{
             principioAtivoRepository.deleteById(principioAtivo.getCodigo());
             Messages.addFlashGlobalInfo("Principio ativo removido com sucesso.");
+            Faces.navigate("principioativo-listar.xhtml?faces-redirect=true");
         }catch(DataIntegrityViolationException e){
             Messages.addGlobalWarn("Erro: o registro selecionado está vinculado com outros registros.");
         }

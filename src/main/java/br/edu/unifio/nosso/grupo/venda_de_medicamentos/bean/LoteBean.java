@@ -46,7 +46,7 @@ public class LoteBean {
         lote = Faces.getFlashAttribute("lote");
 
         if(lote == null){
-            Faces.navigate("lote-listagem.xhtml?faces-redirect=true");
+            Faces.navigate("lote-listar.xhtml?faces-redirect=true");
         }
     }
 
