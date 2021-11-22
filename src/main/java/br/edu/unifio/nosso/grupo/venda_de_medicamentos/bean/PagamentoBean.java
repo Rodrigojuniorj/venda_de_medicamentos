@@ -2,7 +2,9 @@ package br.edu.unifio.nosso.grupo.venda_de_medicamentos.bean;
 
 
 
+import br.edu.unifio.nosso.grupo.venda_de_medicamentos.domain.Compra;
 import br.edu.unifio.nosso.grupo.venda_de_medicamentos.domain.Pagamento;
+import br.edu.unifio.nosso.grupo.venda_de_medicamentos.repository.CompraRepository;
 import br.edu.unifio.nosso.grupo.venda_de_medicamentos.repository.PagamentoRepository;
 import lombok.Data;
 import org.omnifaces.util.Faces;
@@ -23,12 +25,16 @@ import java.util.List;
 public class PagamentoBean {
     private Pagamento pagamento;
     private List<Pagamento> pagamentos;
+    private List<Compra> compras;
 
     @Autowired
     private PagamentoRepository pagamentoRepository;
+    @Autowired
+    private CompraRepository compraRepository;
 
     public void novoPagamento(){
         pagamento = new Pagamento();
+        compras = compraRepository.findAll(Sort.by(Sort.Direction.ASC, "codigo"));
     }
 
     public void salvarPagamento(){
@@ -41,6 +47,7 @@ public class PagamentoBean {
     }
     public void listarPagamento(){
         pagamentos = pagamentoRepository.findAll(Sort.by(Sort.Direction.ASC, "horario"));
+
     }
 
     public void selecionarEdicao(Pagamento pagamento) {
@@ -55,6 +62,7 @@ public class PagamentoBean {
     public void retornarEdicao() {
         if (Faces.getFlashAttribute("pagamento") != null) {
             pagamento = Faces.getFlashAttribute("pagamento");
+            compras = compraRepository.findAll(Sort.by(Sort.Direction.ASC, "codigo"));
         } else {
             try{
                 Faces.redirect("pagamento-lista.xhtml");
@@ -78,7 +86,13 @@ public class PagamentoBean {
         Faces.navigate("pagamento-exclusao.xhtml?faces-redirect=true");
     }
 
-
+    public void retornarExclusao(){
+        pagamento = Faces.getFlashAttribute("pagamento");
+        compras = compraRepository.findAll(Sort.by(Sort.Direction.ASC, "codigo"));
+        if(pagamento == null){
+            Faces.navigate("pagamento-listar.xhtml?faces-redirect=true");
+        }
+    }
 
 
 }

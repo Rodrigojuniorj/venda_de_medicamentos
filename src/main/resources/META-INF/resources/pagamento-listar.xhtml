@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xml:lang="en"
+      lang="en">
+
+<f:metadata>
+    <f:viewAction action="#{pagamentoBean.listarPagamento}"/>
+</f:metadata>
+
+<h:head>
+    <title>Listagem de Pagamentos</title>
+    <h:outputScript name="locales/locale-pt.js" library="primefaces"/>
+</h:head>
+
+<h:body >
+    <h:form style=" ">
+        <ui:include src="menu.xhtml"/>
+        <p:breadCrumb style="">
+            <p:menuitem value="Home"/>
+            <p:menuitem value="Cadastro"/>
+            <p:menuitem value="Pagamento"/>
+            <p:menuitem value="Listagem"/>
+        </p:breadCrumb>
+        <p:card style="">
+            <p:messages closable="true">
+                <p:autoUpdate/>
+            </p:messages>
+
+            <p:dataTable value="#{pagamentoBean.pagamentos}" var="pagamentos" >
+                <f:facet name="header">
+                    <p:button  icon="pi pi-plus" outcome="pagamento-novo.xhtml" />
+                </f:facet>
+                <p:column headerText="Usuário">
+                    <h:outputText value="#{pagamentos.compra.usuario.nome}" />
+                </p:column>
+                <p:column headerText="Código da compra">
+                    <h:outputText value="#{pagamentos.compra.codigo}" />
+                </p:column>
+
+                <p:column headerText="Horário do pagamento">
+                    <h:outputText value="#{pagamentos.horario}" />
+                </p:column>
+
+                <p:column headerText="Código do cartão">
+                    <h:outputText value="#{pagamentos.numeroDoCartao}" />
+                </p:column>
+
+
+                <p:column headerText="">
+                    <p:commandButton icon="pi pi-pencil" actionListener="#{pagamentoBean.selecionarEdicao(pagamentos)}" style="border: none"/>
+                    <p:spacer width="1"/>
+                    <p:commandButton icon="pi pi-trash" actionListener="#{pagamentoBean.selecionarExclusao(pagamentos)}" style="color: #fff; background-color: red; border: none" />
+                </p:column>
+            </p:dataTable>
+        </p:card>
+    </h:form>
+</h:body>
+
+</html>
