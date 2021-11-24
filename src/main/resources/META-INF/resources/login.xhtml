@@ -12,17 +12,17 @@
       xml:lang="en"
       lang="en">
 
-    <style type="text/css">
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-      p {
-          line-height: 1.5;
-          margin: 0;
-      }
-    </style>
+<style type="text/css">
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    p {
+        line-height: 1.5;
+        margin: 0;
+    }
+</style>
 
 
 <f:metadata>
@@ -31,7 +31,7 @@
 </f:metadata>
 
 <h:head>
-    <title>Lote</title>
+    <title>Login</title>
     <h:outputScript name="locales/locale-pt.js" library="primefaces"/>
 </h:head>
 <h:body>
@@ -41,38 +41,31 @@
             <p:menuitem value="Home"/>
             <p:menuitem value="Cadastro"/>
             <p:menuitem value="Usuario" outcome="usuario-listar"/>
-            <p:menuitem value="Novo"/>
+            <p:menuitem value="Fazer login"/>
         </p:breadCrumb>
         <p:card style="">
             <f:facet name="title">
-                <h2 >Novo Usuário</h2>
+                <h2 >Login</h2>
             </f:facet>
             <p:messages closable="true">
                 <p:autoUpdate/>
             </p:messages>
-                <h:panelGrid columns="1" style="width: 100%">
-                    <p:inputText value="#{usuarioBean.usuario.nome}" placeholder="Nome" >
-                        <p:autoUpdate/>
-                    </p:inputText>
+            <h:panelGrid columns="1" style="width: 100%">
 
-                    <p:inputText value="#{usuarioBean.usuario.cpf}" placeholder="CPF" >
-                        <p:autoUpdate/>
-                    </p:inputText>
+                <p:inputText value="#{usuarioBean.usuario.email}" placeholder="Email" >
+                    <p:autoUpdate/>
+                </p:inputText>
 
-                    <p:inputText value="#{usuarioBean.usuario.email}" placeholder="Email" >
-                        <p:autoUpdate/>
-                    </p:inputText>
-
-                    <p:password id="toggle" value="#{usuarioBean.usuario.senha}"  toggleMask="true" redisplay="true" placeholder="Senha" style="width: 192px"/>
-
-
-                </h:panelGrid>
-
-
-            <h:panelGrid columns="12" style="margin-top: 30px ">
-                <p:commandButton value="Salvar" styleClass="ui-button-success"  actionListener="#{usuarioBean.salvarUsuario}" icon="pi pi-save"/>
-                <p:button value="Voltar"  icon="pi pi-times"/>
+                <p:password id="toggle" value="#{usuarioBean.usuario.senha}"  toggleMask="true" redisplay="true" placeholder="Senha" style="width: 192px"/>
             </h:panelGrid>
+
+
+            <h:panelGrid columns="2" style="margin-top: 30px ">
+                <p:commandButton value="Fazer login" styleClass="ui-button-success"  actionListener="#{usuarioBean.autenticar()}" icon="pi pi-save"/>
+                <p:button value="Voltar"  icon="pi pi-times"/>
+                <p:link value="Não tem conta? Fazer cadastro" styleClass="ui-button-info"  outcome="usuario-novo.xhtml" icon="pi pi-user-plus"/>
+            </h:panelGrid>
+
         </p:card>
     </h:form>
 

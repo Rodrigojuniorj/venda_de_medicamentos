@@ -1,7 +1,9 @@
 package br.edu.unifio.nosso.grupo.venda_de_medicamentos.bean;
 
 import br.edu.unifio.nosso.grupo.venda_de_medicamentos.domain.Lote;
+import br.edu.unifio.nosso.grupo.venda_de_medicamentos.domain.Medicamento;
 import br.edu.unifio.nosso.grupo.venda_de_medicamentos.repository.LoteRepository;
+import br.edu.unifio.nosso.grupo.venda_de_medicamentos.repository.MedicamentoRepository;
 import lombok.Data;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
@@ -20,16 +22,21 @@ import java.util.List;
 public class LoteBean {
     private Lote lote;
     private List<Lote> lotes;
+    private List<Medicamento> medicamentos;
 
     @Autowired
     LoteRepository loteRepository;
 
+    @Autowired
+    MedicamentoRepository  medicamentoRepository;
     public void loteNovo(){
         lote = new Lote();
+        medicamentos = medicamentoRepository.findAll(Sort.by(Sort.Direction.ASC, "nome"));
     }
 
     public void listar(){
         lotes = loteRepository.findAll(Sort.by(Sort.Direction.ASC, "dataDeValidade"));
+
     }
 
     public void selecionarEdicao(Lote lote) {
@@ -44,7 +51,7 @@ public class LoteBean {
 
     public void carregar(){
         lote = Faces.getFlashAttribute("lote");
-
+        medicamentos = medicamentoRepository.findAll(Sort.by(Sort.Direction.ASC, "nome"));
         if(lote == null){
             Faces.navigate("lote-listar.xhtml?faces-redirect=true");
         }

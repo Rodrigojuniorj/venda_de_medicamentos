@@ -52,6 +52,10 @@
                         <f:convertDateTime type="localDate" pattern="dd/MM/yyyy" />
                      </h:outputText>
                 </p:column>
+                <p:column headerText="Medicamento">
+                    <h:outputText value="#{lote.medicamento.codigo}: #{lote.medicamento.nome}" >
+                    </h:outputText>
+                </p:column>
                 <p:column headerText="">
                     <p:commandButton icon="pi pi-pencil" actionListener="#{loteBean.selecionarEdicao(lote)}" style="border: none"/>
                     <p:spacer width="1"/>

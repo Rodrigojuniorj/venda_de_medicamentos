@@ -60,6 +60,12 @@
                     <p:datePicker value="#{loteBean.lote.dataDeValidade}" placeholder="Data de Validade" disabled="true">
                         <p:autoUpdate/>
                     </p:datePicker>
+                    <p:selectOneMenu value="#{loteBean.lote.medicamento}"  converter="omnifaces.SelectItemsConverter" disabled="true">
+                        <f:selectItem itemLabel="Medicamento" noSelectionOption="true"/>
+
+                        <f:selectItems value="#{loteBean.medicamentos}" var="medicamento" itemValue="#{medicamento}" itemLabel="#{medicamento.codigo}: #{medicamento.nome}" />
+                        <p:autoUpdate/>
+                    </p:selectOneMenu>
                 </h:panelGrid>
 
 

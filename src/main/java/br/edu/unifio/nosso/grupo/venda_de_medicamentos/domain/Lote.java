@@ -29,4 +29,8 @@ public class Lote {
     @NotNull(message = "O campo data de validade é necessário")
     @FutureOrPresent(message = "A data de validade informada deve ser uma data presente ou futura")
     private LocalDate dataDeValidade;
+
+    @ManyToOne
+    @NotNull(message = "O campo medicamento é necessário")
+    private Medicamento medicamento;
 }
