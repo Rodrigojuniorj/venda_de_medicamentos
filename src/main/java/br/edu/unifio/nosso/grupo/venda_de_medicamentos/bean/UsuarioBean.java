@@ -138,13 +138,9 @@ public class UsuarioBean {
             } else {
                 logged = false;
                 System.out.println(caminho);
-                if ((caminho != "/usuario-novo.xhtml") && (caminho != "/login.xhtml")) {
-                    try {
-                        Messages.addFlashGlobalInfo("É necessário fazer login!");
-                        Faces.redirect("/login.xhtml");
-                    } catch (Exception e) {
-                    }
-                }
+
+
+
             }
         }
     }
