@@ -51,13 +51,8 @@ public class MedicamentoBean {
         medicamentos = medicamentoRepository.findAll(Sort.by(Sort.Direction.ASC, "nome"));
     }
     public void selecionarEdicao(Medicamento medicamento) {
-        try {
             Faces.setFlashAttribute("medicamento", medicamento);
-            Faces.redirect("medicamento-editar.xhtml");
-        } catch (Exception e) {
-
-        }
-
+            Faces.navigate("medicamento-editar.xhtml?faces-redirect=true");
     }
     public void retornarEdicao() {
         if (Faces.getFlashAttribute("medicamento") != null) {
